@@ -44,7 +44,7 @@ const enableCORS = function (req, res, next) {
 
 // global setting for safety timeouts to handle possible
 // wrong callbacks that will never be called
-const TIMEOUT = 10000;
+const TIMEOUT = 1000;
 
 app.use(bodyParser.urlencoded({ extended: "false" }));
 app.use(bodyParser.json());
