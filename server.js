@@ -7,22 +7,19 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
-let mongoose;
-try {
-  mongoose = require("mongoose");
-  mongoose.connect(process.env.MONGO_URI).then(() => {
-    console.log("connected");
+let mongoose = require("mongoose");
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("CONNECTED");
+  })
+  .catch((error) => {
+    console.log("CONNECTION ERROR");
   });
 
-  let peopleSchema = mongoose.Schema({
-    name: String,
-    age: Number,
-    favoriteFoods: [String],
-  });
-  let Person = mongoose.model("Person", peopleSchema);
-} catch (e) {
-  console.log(e);
-}
 const fs = require("fs");
 const path = require("path");
 const bodyParser = require("body-parser");
