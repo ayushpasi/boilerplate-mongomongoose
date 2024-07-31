@@ -13,6 +13,13 @@ try {
   mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("connected");
   });
+
+  let peopleSchema = mongoose.Schema({
+    name: String,
+    age: Number,
+    favoriteFoods: [String],
+  });
+  let Person = mongoose.model("Person", peopleSchema);
 } catch (e) {
   console.log(e);
 }
